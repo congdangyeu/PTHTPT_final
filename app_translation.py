@@ -22,45 +22,48 @@ import copy
 class Translate(object):
     def UI(self):
         window = Tk()
-        btn_translate = tk.Button(window, text="Translate", width=10, height=2, command=self.clicked)
-        btn_translate.grid(column=1, row=3)
+        window.title("Nhóm 7")
+        window.geometry('350x200')
+        lbl = Label(window, text="Hệ thống dịch câu tiếng việt sang tiếng anh")
+        lbl.grid(column=0, row=0)
+
+        # Tạo một Textbox
+        
+
+        btn_translate = tk.Button(window, text="Translate", width=10, height=5, command=self.clicked)
+        btn_translate.grid(column=20, row=25)
         window.mainloop()
     window = Tk()
-    window.title("Welcome to VniTeach app")
+    window.title("Phát triển hệ thống dựa trên tri thức")
     window.geometry('350x200')
-    lbl = Label(window, text="Hello")
-    lbl.grid(column=0, row=0)
-
-    # Tạo một Textbox
-    txt = Entry(window, width=10)
-    # Vị trí xuất hiện của Textbox
+    txt = Entry(window, width=150)
+        # Vị trí xuất hiện của Textbox
     txt.grid(column=1, row=0)
 
     # Đặt vị trí con trỏ tại Textbox
     txt.focus()
-
     # Hàm xử lý khi nút được nhấn
     inputx = ''
     def clicked(self):
         global inputx
         inputx = self.txt.get()
         self.handle_input()
-        print('input: ', inputx)
-        a = main()
-        b = ' '.join(a)
-        print('a', b)
+        # print('input: ', inputx)
+        res = main()
+        result_sentences = ' '.join(res)
+        # print('a', b)
         
-        messagebox.showinfo('Result', b)
-    input = 'tôi là học sinh'
-    print("tét", input)
+        messagebox.showinfo('Result', result_sentences)
+    # input = 'tôi là học sinh'
+    # print("tét", input)
 
     def handle_input(self):
         input_text = inputx
         input_text = input_text.lower()
-        print('input_text: ', input_text)
+        # print('input_text: ', input_text)
         input_tag = ViPosTagger.postagging(ViTokenizer.tokenize(input_text))
         source_text = [vietnamese_concatenator(input_tag)]
-        print('runnnnnnnnnnn', input_tag)
+        # print('runnnnnnnnnnn', input_tag)
         return source_text
 translate = Translate()  
 
@@ -577,6 +580,6 @@ def main():
             new_population += [population[keepers[j][0]]]
         population = copy.deepcopy(new_population)
     # print("Translation for: '", input_text, "'is",best)
-    print('best: ', best)
+    # print('best: ', best)
     return best
 translate.UI()
